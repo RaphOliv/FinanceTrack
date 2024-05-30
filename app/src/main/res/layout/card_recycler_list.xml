@@ -58,7 +58,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="45dp"
             android:layout_marginBottom="8dp"
-            android:text="Amount:"
+            android:text="@string/amount"
             android:textColor="@color/black"
             android:textSize="10dp"
             android:textStyle="bold" />
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
             android:layout_marginTop="45dp"
-            android:text="Due Date:"
+            android:text="@string/due_date"
             android:textColor="@color/black"
             android:textSize="10sp"
             android:textStyle="bold" />

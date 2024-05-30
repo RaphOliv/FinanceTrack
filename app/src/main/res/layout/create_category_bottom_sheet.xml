@@ -7,16 +7,16 @@
     android:padding="16dp">
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Create Category"
+        android:text="@string/create_category"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textColor="@color/blue"
+        android:fontFamily="@font/pacifico"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:background="@drawable/add_shape_list"
             android:id="@+id/et_category_name"
             android:layout_width="match_parent"
-            android:hint="Category Name: e.g. Home"
+            android:hint="@string/category_name_e_g_home"
             android:textColorHint="@color/black"
             android:layout_height="wrap_content"
             android:minHeight="48dp" />
@@ -44,7 +44,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Create"
+        android:text="@string/create"
         android:textColor="@color/white"
         android:textSize="16sp"/>
 
