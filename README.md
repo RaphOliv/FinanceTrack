@@ -7,7 +7,7 @@ By Raphael and Bruno
 # FinanceTrack
 
 **Description:**
-  FinanceTrack is an intuitive and efficient financial app designed to help you manage your daily expenses with ease and accuracy. With a user-friendly interface and practical features, Finance Tracker is the ideal tool for keeping your finances organized.
+  FinanceTrack is an intuitive and efficient financial application designed to help you manage your daily expenses with ease and precision. With a user-friendly interface, practical features and support for Portuguese and Spanish, Finance Tracker is the ideal tool for international users who want to keep their finances organised.
 
 **Key Features:**
 
@@ -25,6 +25,9 @@ By Raphael and Bruno
 
 5. **Press Delete Category:**
    - Keep your expense records clean and organised with the delete by category feature. Press on a specific category to delete all the expenses associated with it at once, allowing you to clean up your financial data quickly and efficiently.
+
+6. **Internationalisation:**
+   - FinanceTrack is available in Portuguese and Spanish, providing a personalised experience for speakers of these languages. The language is chosen according to the language of the device.
 
 **Benefits:**
 - **Total Control:** Keep your finances under control with a clear view of your expenses and due dates.
@@ -83,7 +86,7 @@ Technology event organised by Devspace.
 
 ### 1. What is a Hacksprint?
 HackSprint is an event where all community participants get together in groups or pairs to develop a code challenge and exchange knowledge.
-Following the [70/20/10](https://www.google.com/search?q=o+que+%C3%A9+a+regra+70+20+10&rlz=1C5CHFA_enDE1036DE1036&oq=o+que+%C3%A9+a+regra+70+20+10&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB7SAQg3ODcyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#imgrc=0oHCIDUqPyAbqM) o evento tem como objetivo reforçar a colaboração e mão na massa, trazendo uma oportunidade de acelerar o aprendizado em um período de 2 semanas.
+Following the [70/20/10](https://www.google.com/search?q=o+que+%C3%A9+a+regra+70+20+10&rlz=1C5CHFA_enDE1036DE1036&oq=o+que+%C3%A9+a+regra+70+20+10&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB7SAQg3ODcyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#imgrc=0oHCIDUqPyAbqM) the event aims to reinforce collaboration and hands-on learning, providing an opportunity to accelerate learning over a two-week period.
 
 ### 2. Why two weeks?
 We're going to simulate the timing of a software development management sprint, so our students will have the opportunity to have an immersive experience in how the day-to-day work of a programmer who already works in the field works.
