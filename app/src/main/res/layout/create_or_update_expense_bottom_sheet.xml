@@ -15,8 +15,8 @@
         android:text="Create Expense"
         android:textAlignment="center"
         android:textColor="#6991F9"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="24sp"
+        android:fontFamily="@font/pacifico"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -28,7 +28,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose a category:"
+        android:text="@string/choose_a_category"
         android:textColor="@color/black"
         android:textSize="13sp"
         android:textStyle="bold"
@@ -46,9 +46,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.368">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -90,7 +91,7 @@
                     android:layout_height="51dp"
                     android:background="@drawable/add_shape_list"
                     android:backgroundTint="@color/blue"
-                    android:hint="Amount"
+                    android:hint="@string/amount1"
                     android:inputType="numberDecimal"
                     android:textColor="@color/black"
                     android:textSize="13dp" />
@@ -114,7 +115,7 @@
                     android:layout_height="56dp"
                     android:background="@drawable/add_shape_list"
                     android:backgroundTint="@color/blue"
-                    android:hint="Expense Name: e.g. Rent."
+                    android:hint="@string/expense_name_e_g_rent"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textSize="13dp" />
@@ -147,7 +148,7 @@
                     android:backgroundTint="@color/blue"
                     android:clickable="true"
                     android:focusable="false"
-                    android:hint="Date"
+                    android:hint="@string/date"
                     android:inputType="date"
                     android:maxLength="10"
                     android:textColor="@color/black"
@@ -162,7 +163,7 @@
         android:layout_height="57dp"
         android:backgroundTint="#2F2F2F"
         android:gravity="center"
-        android:text="Create"
+        android:text="@string/create"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
         android:textColor="@color/white"
@@ -182,10 +183,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/recyclerListIcons"
         app:layout_constraintEnd_toEndOf="@+id/recyclerListIcons"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
+        app:layout_constraintVertical_bias="0.875" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Finance Track</string>
+    <string name="home_title" translatable="false">FinanceTrack</string>
+    <string name="create_expense_title">Crear Gastos</string>
+    <string name="create">Crear</string>
+    <string name="update_expense_title">Actualizar Gastos</string>
+    <string name="update">Actualizar</string>
+    <string name="delete">Borrar</string>
+    <string name="category_delete_title">Advertencia</string>
+    <string name="category_delete_message">Al eliminar esta categoría también se eliminarán todos sus gastos. ¿Está seguro de que desea eliminar esta categoría?</string>
+    <string name="my_categories">Mis Categorías</string>
+    <string name="my_expenses">Mis Gastos</string>
+    <string name="financetrack">FinanceTrack</string>
+    <string name="home">Inicio</string>
+    <string name="list">Lista</string>
+    <string name="amount">Importe:</string>
+    <string name="due_date">Fecha límite:</string>
+    <string name="my_chart">Mi Gráfico</string>
+    <string name="create_category">Crear Categoría</string>
+    <string name="category_name_e_g_home">Nombre de la categoría: p. ej. Casa</string>
+    <string name="create_expense">Crear Gastos</string>
+    <string name="choose_a_category">Elige una categoría:</string>
+    <string name="expense_name_e_g_rent">Nombre del gasto: p. ej. Alquiler.</string>
+    <string name="amount1">Importe</string>
+    <string name="date">Fecha</string>
+    <string name="control_your_expenses_more_easily">Controle sus gastos más fácilmente</string>
+    <string name="keep_track_of_your_expenses">Lleve un registro de sus gastos</string>
+    <string name="infographs_for_a_better_view_of_your_financial_life">¡Infografías para una mejor visión de su vida financiera!</string>
+    <string name="simple_quick_and_easy">sencillo, rápido y fácil</string>
+    <string name="upcoming_expenses">Próximos gastos</string>
+    <string name="total_monthly_expenses">Gastos mensuales totales</string>
+    <string name="chart">Grafico</string>
+    <string name="next">Siguiente</string>
+    <string name="skip">Saltar</string>
+    <string name="add_category">Add Categoría</string>
+    <string name="add_expense">Add Gastos</string>
+
+</resources>
