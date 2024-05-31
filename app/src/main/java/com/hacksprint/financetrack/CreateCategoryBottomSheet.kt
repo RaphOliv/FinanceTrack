@@ -32,9 +32,11 @@ class CreateCategoryBottomSheet(
             } else {
                 val categoryName = etCategoryName.text.toString().trim()
                 onCreateClicked(categoryName)
+                showMessages("Category created")
                 dismiss()
             }
         }
+
 
         return view
     }
