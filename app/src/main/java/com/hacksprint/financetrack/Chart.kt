@@ -1,11 +1,10 @@
 package com.hacksprint.financetrack
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import com.github.mikephil.charting.charts.BarChart
@@ -18,7 +17,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 
-class ChartFragment : Fragment() {
+class Chart : AppCompatActivity() {
     private lateinit var viewModel: ExpenseViewModel
     private lateinit var pieChart: PieChart
     private lateinit var barChart: BarChart
@@ -26,7 +25,7 @@ class ChartFragment : Fragment() {
 // chama novamente outra isntancia da base de dados
     private val db by lazy {
         Room.databaseBuilder(
-           requireContext(),
+            applicationContext,
             FinanceTrackDataBase::class.java,
             "finance_track_db"
         ).build()
@@ -34,26 +33,26 @@ class ChartFragment : Fragment() {
 
     private val expenseDao by lazy { db.getExpenseDao() }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.chart)
 
+        pieChart = findViewById(R.id.pieChart)
+        barChart = findViewById(R.id.barChart)
 
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View? {
-            return inflater.inflate(R.layout.chart, container, false)
+        val btnMain = findViewById<Button>(R.id.btn_list)
+        btnMain.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
-
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
-
-        pieChart = view.findViewById(R.id.pieChart)
-        barChart = view.findViewById(R.id.barChart)
-
-
-
+        val btnHome = findViewById<Button>(R.id.btn_home)
+        btnHome.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 // view model esta pegando os daods do expese para passar para os charts
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
-        viewModel.expenses.observe(viewLifecycleOwner) { expenses ->
+        viewModel.expenses.observe(this) { expenses ->
             if (expenses != null) {
                 configurePieChart(expenses)
                 configureBarChart(expenses)
