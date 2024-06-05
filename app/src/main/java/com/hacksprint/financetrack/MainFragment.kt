@@ -1,15 +1,17 @@
 package com.hacksprint.financetrack
 
-import android.content.Intent
+import android.app.Activity
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.widget.Button
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainFragment : Fragment() {
 
     companion object {
         var expenses:
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     private val db by lazy {
         Room.databaseBuilder(
-            applicationContext,
+            requireContext(),
             FinanceTrackDataBase::class.java,
             "finance_track_db"
         ).build()
@@ -53,39 +55,37 @@ class MainActivity : AppCompatActivity() {
         db.getExpenseDao()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-
-
-        val btnHome = findViewById<Button>(R.id.btn_home)
-        btnHome.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+   override fun onCreateView(
+       inflater: LayoutInflater, container: ViewGroup?,
+       savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(R.layout.activity_main, container, false)
         }
 
-
-        ctnContent = findViewById(R.id.ctn_content)
-
-        val rvCategory = findViewById<RecyclerView>(R.id.rv_categories)
-        val rvExpense = findViewById<RecyclerView>(R.id.rv_expenses)
-        val fabCreateExpense = findViewById<ImageView>(R.id.btn_add_expense)
-        val fabCreateCategory = findViewById<ImageView>(R.id.btn_add_categorie)
+                override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
 
 
-        val deleteIcon = ContextCompat.getDrawable(this, R.drawable.ic_delete)!!
+        ctnContent = view.findViewById(R.id.ctn_content)
+
+        val rvCategory = view.findViewById<RecyclerView>(R.id.rv_categories)
+        val rvExpense = view.findViewById<RecyclerView>(R.id.rv_expenses)
+        val fabCreateExpense = view.findViewById<ImageView>(R.id.btn_add_expense)
+        val fabCreateCategory = view.findViewById<ImageView>(R.id.btn_add_categorie)
+
+
+        val deleteIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete)!!
         val swipeBackground = ColorDrawable(Color.RED)
 
 // aqui inicia o view model usando o viewmodel provider
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
 
 // aqui e um live data , ele observa as lista do expense , se mudar a lista tbm mudara na outra tela
-        viewModel.expenses.observe(this) { expenses ->
+        viewModel.expenses.observe(viewLifecycleOwner) { expenses ->
             expenseAdapter.submitList(expenses)
         }
 
-        viewModel.categories.observe(this) { categories ->
+        viewModel.categories.observe(viewLifecycleOwner) { categories ->
             categoryAdapter.submitList(categories)
         }
 
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     insertCategory(categoryEntity)
                 }
             ).show(
-                supportFragmentManager, "create_category"
+               parentFragmentManager, "create_category"
             )
         }
 
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
                         isSelected = categoryToBeDeleted.isSelected
                     )
                     deleteCategory(categoryEntityToBeDeleted)
-                    Toast.makeText(this, "Category deleted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Category deleted", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity() {
 
             )
             deleteExpense(expenseEntityToBeDeleted)
-            Toast.makeText(this, "Expense deleted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Expense deleted", Toast.LENGTH_SHORT).show()
         }
 
         val itemTouchHelperCallback =
@@ -266,7 +266,7 @@ class MainActivity : AppCompatActivity() {
             onActionClicked = onActionClicked
         )
         infoBottomSheet.show(
-            supportFragmentManager,
+           parentFragmentManager,
             "infoBottomSheet"
         )
     }
@@ -415,7 +415,7 @@ class MainActivity : AppCompatActivity() {
             onDeleteClicked = onDeleteClicked
         )
         createExpenseBottomSheet.show(
-            supportFragmentManager,
+            parentFragmentManager,
             "create_expense"
         )
     }

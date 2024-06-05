@@ -1,12 +1,12 @@
 package com.hacksprint.financetrack
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,16 +14,15 @@ import androidx.room.Room
 import java.text.NumberFormat
 import java.util.Locale
 
-
-class HomeActivity : AppCompatActivity() {
+class HomeFragment : Fragment() {
     private lateinit var viewModel: ExpenseViewModel
     private val expenseAdapter by lazy { ExpenseListAdapter() }
     private lateinit var totalExpensesTextView: TextView
 
-    // chama novamente o banco de dados
+    // Chama novamente o banco de dados
     private val db by lazy {
         Room.databaseBuilder(
-            applicationContext,
+            requireContext(),
             FinanceTrackDataBase::class.java,
             "finance_track_db"
         ).build()
@@ -31,54 +30,52 @@ class HomeActivity : AppCompatActivity() {
 
     private val expenseDao by lazy { db.getExpenseDao() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.home_layout)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.home_layout, container, false)
+    }
 
-        totalExpensesTextView = findViewById(R.id.valor_despesas)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        totalExpensesTextView = view.findViewById(R.id.valor_despesas)
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
 
-        viewModel.totalExpenses.observe(this) { total ->
+        viewModel.totalExpenses.observe(viewLifecycleOwner) { total ->
             val format = NumberFormat.getCurrencyInstance(Locale.ITALY)
             totalExpensesTextView.text = format.format(total)
         }
 
         viewModel.loadTotalExpenses(expenseDao)
 
-
-        val btnGrafic = findViewById<ImageView>(R.id.btn_grafic)
+        val btnGrafic = view.findViewById<ImageView>(R.id.btn_grafic)
         btnGrafic.setOnClickListener {
-        val intent = Intent(this, Chart::class.java)
-            startActivity(intent)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame, ChartFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
-        val btnHome = findViewById<Button>(R.id.btn_list)
-        btnHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        val recyclerViewHome: RecyclerView = view.findViewById(R.id.rv_home)
+        recyclerViewHome.layoutManager = GridLayoutManager(requireContext(), 2)
+        val vazioImg: ImageView = view.findViewById(R.id.vazio_home)
 
-        val recyclerViewHome: RecyclerView = findViewById(R.id.rv_home)
-        recyclerViewHome.layoutManager = GridLayoutManager(this, 2)
-        val vazioImg: ImageView = findViewById(R.id.vazio_home)
-// daqui , o view model observa as mudanças na lista e repassa para o adpter da home, passa no max 6 itens
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
 
-        viewModel.expenses.observe(this) { expenses ->
+        viewModel.expenses.observe(viewLifecycleOwner) { expenses ->
             if (expenses.isNullOrEmpty()) {
                 vazioImg.visibility = View.VISIBLE
-
             } else {
                 vazioImg.visibility = View.GONE
 
-
-                val firstSixExpenses = expenses?.take(6) ?: emptyList()
+                val firstSixExpenses = expenses.take(6)
                 val adapter = AdapterRvHome(firstSixExpenses)
                 recyclerViewHome.adapter = adapter
             }
         }
-            // Carregar despesas ao iniciar a HomeActivity
-            viewModel.loadExpenses(expenseDao)
-        }
 
+        viewModel.loadExpenses(expenseDao)
     }
+}
