@@ -32,6 +32,6 @@
     <string name="chart">Chart</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
-    <string name="add_category">Add Category</string>
-    <string name="add_expense">Add Expense</string>
+    <string name="add_category">ADD CATEGORY</string>
+    <string name="add_expense">ADD EXPENSE</string>
 </resources>

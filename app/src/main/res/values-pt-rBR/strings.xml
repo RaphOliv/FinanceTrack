@@ -33,7 +33,7 @@
     <string name="chart">Gráfico</string>
     <string name="next">Próximo</string>
     <string name="skip">Pular</string>
-    <string name="add_category">Add Categoria</string>
-    <string name="add_expense">Add Despesa</string>
+    <string name="add_category">ADD CATEGORIA</string>
+    <string name="add_expense">ADD DESPESA</string>
 
 </resources>
