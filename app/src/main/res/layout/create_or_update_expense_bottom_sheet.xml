@@ -12,7 +12,7 @@
         android:id="@+id/tv_expense_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Expense"
+        android:text="@string/create_expense_title"
         android:textAlignment="center"
         android:textColor="#6991F9"
         android:textSize="24sp"
@@ -94,7 +94,8 @@
                     android:hint="@string/amount1"
                     android:inputType="numberDecimal"
                     android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:maxLength="8"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,9 +117,10 @@
                     android:background="@drawable/add_shape_list"
                     android:backgroundTint="@color/blue"
                     android:hint="@string/expense_name_e_g_rent"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:maxLength="20"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
