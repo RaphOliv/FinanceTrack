@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#C1D0F5"
+    android:background="@drawable/rect_shape"
+    android:backgroundTint="#D7E1F9"
     android:padding="16dp">
 
     <TextView
@@ -31,7 +32,9 @@
             android:hint="@string/category_name_e_g_home"
             android:textColorHint="@color/black"
             android:layout_height="wrap_content"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:inputType="textCapCharacters"
+            android:maxLength="12"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

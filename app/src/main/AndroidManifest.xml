@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinanceTrack"
         tools:targetApi="31">
-        <activity android:name=".Splash"
+        <activity android:name=".presentation.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Presentation" />
-        <activity android:name=".NavigationActivity" />
+        <activity android:name=".presentation.Presentation" />
+        <activity android:name=".presentation.NavigationActivity" />
 
 
         <meta-data
