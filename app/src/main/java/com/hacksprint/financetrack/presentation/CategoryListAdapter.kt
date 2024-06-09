@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.hacksprint.financetrack.R
+import com.hacksprint.financetrack.data.CategoryUiData
 
 class CategoryListAdapter :
     ListAdapter<CategoryUiData, CategoryListAdapter.CategoryViewHolder>(diffCallback())  {
