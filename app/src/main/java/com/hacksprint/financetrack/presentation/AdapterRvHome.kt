@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.hacksprint.financetrack.R
+import com.hacksprint.financetrack.data.ExpenseUiData
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
