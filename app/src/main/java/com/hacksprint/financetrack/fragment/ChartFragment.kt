@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.fragment
 
 import android.graphics.Color
 import android.os.Bundle
@@ -17,6 +17,10 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.hacksprint.financetrack.presentation.ExpenseViewModel
+import com.hacksprint.financetrack.R
+import com.hacksprint.financetrack.data.ExpenseUiData
+import com.hacksprint.financetrack.data.FinanceTrackDataBase
 
 class ChartFragment : Fragment() {
     private lateinit var viewModel: ExpenseViewModel
@@ -66,8 +70,13 @@ class ChartFragment : Fragment() {
 
     private fun configurePieChart(expenses: List<ExpenseUiData>) {
         val pieEntries = mutableListOf<PieEntry>()
-        expenses.forEach { expense ->
-            pieEntries.add(PieEntry(expense.amount.toFloat(), expense.description))
+
+        if (expenses.isEmpty()) {
+            pieEntries.add(PieEntry(1f, "No expenses"))
+        } else {
+            expenses.forEach { expense ->
+                pieEntries.add(PieEntry(expense.amount.toFloat(), expense.description))
+            }
         }
 
         val pieDataSet = PieDataSet(pieEntries, "")
@@ -92,9 +101,15 @@ class ChartFragment : Fragment() {
 
     private fun configureBarChart(expenses: List<ExpenseUiData>) {
         val barEntries = mutableListOf<BarEntry>()
-        expenses.forEachIndexed { index, expense ->
-            barEntries.add(BarEntry(index.toFloat(), expense.amount.toFloat()))
+
+        if (expenses.isEmpty()) {
+            barEntries.add(BarEntry(0f, 0f))
+        } else {
+            expenses.forEachIndexed { index, expense ->
+                barEntries.add(BarEntry(index.toFloat(), expense.amount.toFloat()))
+            }
         }
+
 //personalizacao do chart
 
         val barDataSet = BarDataSet(barEntries, "Expenses")
