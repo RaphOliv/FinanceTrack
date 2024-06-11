@@ -1,8 +1,9 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.data
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.hacksprint.financetrack.data.CategoryEntity
 
 @Entity(
     foreignKeys = [

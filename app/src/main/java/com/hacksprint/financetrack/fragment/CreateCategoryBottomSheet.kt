@@ -1,5 +1,5 @@
 
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
+import com.hacksprint.financetrack.R
 
 class CreateCategoryBottomSheet(
     private val onCreateClicked: (String) -> Unit
