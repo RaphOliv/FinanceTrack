@@ -1,7 +1,9 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.fragment
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +18,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
+import com.hacksprint.financetrack.R
+import com.hacksprint.financetrack.data.CategoryEntity
+import com.hacksprint.financetrack.data.ExpenseUiData
+import com.hacksprint.financetrack.presentation.ListIconsAdapter
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.util.Calendar
+import java.util.Locale
 
 class CreateOrUpdateExpenseBottomSheet(
     private val categoryList: List<CategoryEntity>,
@@ -62,6 +71,41 @@ class CreateOrUpdateExpenseBottomSheet(
         var expenseCategory: String? = null
         val categoryListTemp = mutableListOf("Select a category")
         categoryListTemp.addAll(categoryList.map { it.name })
+
+        edtExpenseAmount.addTextChangedListener(object :
+            TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    edtExpenseAmount.removeTextChangedListener(this)
+
+                    try {
+                        val givenstring = s.toString().replace(",", "").replace(".", "")
+                        val longval: Long = if (givenstring.contains(".")) {
+                            givenstring.replace(".", "").toLong()
+                        } else {
+                            givenstring.toLong()
+                        }
+                        val format = NumberFormat.getInstance(Locale.getDefault()) as DecimalFormat
+                        format.applyPattern("###0.00")
+                        val formattedAmount = format.format(longval / 100.00)
+                        edtExpenseAmount.setText(formattedAmount)
+                        edtExpenseAmount.setSelection(edtExpenseAmount.text?.length ?: 0)
+                    } catch (nfe: NumberFormatException) {
+                        nfe.printStackTrace()
+                    }
+
+                    edtExpenseAmount.addTextChangedListener(this)
+                }
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                    // Do nothing
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    // Do nothing
+                }
+
+            }
+        )
 
         edtExpenseDate.setOnClickListener {
             val calendar = Calendar.getInstance()
