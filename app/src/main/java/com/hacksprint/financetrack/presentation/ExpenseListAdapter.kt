@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,8 @@ import androidx.core.net.ParseException
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.hacksprint.financetrack.R
+import com.hacksprint.financetrack.data.ExpenseUiData
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -41,6 +43,7 @@ class ExpenseListAdapter :
         private val tvValueDate: TextView = view.findViewById(R.id.tv_value_date)
         private val ivIcon: ImageView = view.findViewById(R.id.iv_category)
         private val ivStatus: ImageView = view.findViewById(R.id.iv_status)
+        private lateinit var expense: ExpenseUiData
 
         fun bind(expense: ExpenseUiData, callBack: (ExpenseUiData) -> Unit) {
             tvCategoryName.text = expense.category
@@ -48,6 +51,10 @@ class ExpenseListAdapter :
             tvValueAmount.text = expense.amount
             tvValueDate.text = formatDate(expense.date)
             ivIcon.setImageResource(expense.iconResId)
+
+            this.expense = expense
+            tvExpenseName.text = expense.description
+            tvCategoryName.text = expense.category
 
             val dueDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(expense.date)
             val currentDate = Date()
@@ -62,6 +69,10 @@ class ExpenseListAdapter :
             view.setOnClickListener {
                 callBack.invoke(expense)
             }
+        }
+
+        fun getExpense(): ExpenseUiData {
+            return expense
         }
 
     fun formatDate(dateString: String): String {
