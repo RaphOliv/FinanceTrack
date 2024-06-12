@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.data
 
 import androidx.annotation.DrawableRes
 
