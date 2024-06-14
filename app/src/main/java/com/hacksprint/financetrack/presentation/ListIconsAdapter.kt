@@ -1,10 +1,11 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.hacksprint.financetrack.R
 
 class ListIconsAdapter(
     private val icons: List<Int>,
