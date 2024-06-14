@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.hacksprint.financetrack.presentation.ExpenseListAdapter
+import com.hacksprint.financetrack.presentation.ExpenseViewModel
+import com.hacksprint.financetrack.R
+import com.hacksprint.financetrack.data.FinanceTrackDataBase
+import com.hacksprint.financetrack.presentation.AdapterRvHome
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -44,7 +49,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
 
         viewModel.totalExpenses.observe(viewLifecycleOwner) { total ->
-            val format = NumberFormat.getCurrencyInstance(Locale.ITALY)
+            val format = NumberFormat.getCurrencyInstance(Locale.getDefault())
             totalExpensesTextView.text = format.format(total)
         }
 
