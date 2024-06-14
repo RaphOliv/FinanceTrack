@@ -1,6 +1,5 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.fragment
 
-import android.app.Activity
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -16,6 +15,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.hacksprint.financetrack.presentation.CategoryListAdapter
+import com.hacksprint.financetrack.presentation.ExpenseListAdapter
+import com.hacksprint.financetrack.presentation.ExpenseViewModel
+import com.hacksprint.financetrack.R
+import com.hacksprint.financetrack.data.CategoryEntity
+import com.hacksprint.financetrack.data.CategoryUiData
+import com.hacksprint.financetrack.data.ExpenseEntity
+import com.hacksprint.financetrack.data.ExpenseUiData
+import com.hacksprint.financetrack.data.FinanceTrackDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -154,7 +162,8 @@ class MainFragment : Fragment() {
 
             if (selected.name == "ALL") {
                 GlobalScope.launch(Dispatchers.IO) {
-                    getExpensesFromDatabase()
+                    viewModel.loadExpenses(expenseDao)
+                    /*getExpensesFromDatabase()*/
                 }
             }
         }
@@ -188,9 +197,9 @@ class MainFragment : Fragment() {
                 }
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    val position = viewHolder.adapterPosition
-                    val task = expenses[position]
-                    onDeleteClicked.invoke(task)
+                    val expenseViewHolder = viewHolder as ExpenseListAdapter.ExpenseViewHolder
+                    val expense = expenseViewHolder.getExpense()
+                    onDeleteClicked.invoke(expense)
 
                 }
 
@@ -249,7 +258,6 @@ class MainFragment : Fragment() {
         GlobalScope.launch(Dispatchers.IO) {
             getCategoriesFromDatabase()
             getExpensesFromDatabase()
-
         }
     }
 
