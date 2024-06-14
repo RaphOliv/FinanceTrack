@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.hacksprint.financetrack.R
 
 class InfoBottomSheet(
     private val title: String,
