@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import android.content.Intent
 import android.graphics.Color
@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.hacksprint.financetrack.R
 
 class Chart : AppCompatActivity() {
     private lateinit var viewModel: ExpenseViewModel
