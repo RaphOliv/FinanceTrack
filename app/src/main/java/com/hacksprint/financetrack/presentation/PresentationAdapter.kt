@@ -1,8 +1,10 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.hacksprint.financetrack.fragment.FrameLayoutFragment
+import com.hacksprint.financetrack.R
 
 // adapter que infla os frames de apresentacao inicial
 class PresentationAdapter (fragmentActivity: FragmentActivity):FragmentStateAdapter(fragmentActivity) {
