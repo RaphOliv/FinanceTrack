@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import android.animation.Animator
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
+import com.hacksprint.financetrack.R
 
 // Classe responsável por exibir a tela de splash ao iniciar a aplicação
 class Splash : AppCompatActivity() {
