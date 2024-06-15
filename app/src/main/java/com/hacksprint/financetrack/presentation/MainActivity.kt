@@ -1,4 +1,4 @@
-package com.hacksprint.financetrack
+package com.hacksprint.financetrack.presentation
 
 import android.content.Intent
 import android.graphics.Canvas
@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.hacksprint.financetrack.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
