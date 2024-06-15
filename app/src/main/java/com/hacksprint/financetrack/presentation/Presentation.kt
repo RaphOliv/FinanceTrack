@@ -52,7 +52,7 @@ class Presentation: AppCompatActivity() {
             val lastaitem = viewPager.adapter?.itemCount?.minus(1)
 
             if (currentItem < lastaitem!!) {
-                val intent = Intent(this, NavigationActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -62,7 +62,7 @@ class Presentation: AppCompatActivity() {
             val lastaitem = viewPager.adapter?.itemCount?.minus(1)
 
             if (currentItem == lastaitem) {
-                val intent = Intent(this, NavigationActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
             }else{
                 viewPager.setCurrentItem(currentItem + 1, true)

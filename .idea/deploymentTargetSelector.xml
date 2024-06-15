@@ -8,6 +8,7 @@
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="PhysicalDevice" identifier="serial=R9JR305VLXJ" />
+       
             </handle>
           </Target>
         </DropdownSelection>
