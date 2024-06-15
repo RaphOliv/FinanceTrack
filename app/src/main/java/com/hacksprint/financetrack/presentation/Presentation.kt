@@ -24,11 +24,9 @@ class Presentation: AppCompatActivity() {
         skip = findViewById(R.id.btn_presentation_skip)
         btnNext = findViewById(R.id.btn_presentation)
 
-        //configura o viewpager2 com o adapter
         val adapter = PresentationAdapter(this)
         viewPager.adapter = adapter
 
-        //registra as mudaças de tela dos fragments
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -39,7 +37,6 @@ class Presentation: AppCompatActivity() {
                     indicator.visibility = View.INVISIBLE
                     btnNext.text = "Next"
 
-                    // se estiver no ultimo frame o texto do botao muda, e se estiver no penultimo tbm
 
                 }else if(position ==1){
                     btnNext.text = "Start"
@@ -49,7 +46,6 @@ class Presentation: AppCompatActivity() {
             }
 
         })
-//botao que ao ser clicar pula os frames de apresentacao e vai para  ultimo frame
 
         skip.setOnClickListener{
             val currentItem = viewPager.currentItem
@@ -60,12 +56,11 @@ class Presentation: AppCompatActivity() {
                 startActivity(intent)
             }
         }
-// botao que ao ser clicado pula para a proxima view, mas pode mudar de view apenas rolando.
+
         btnNext.setOnClickListener{
             val currentItem = viewPager.currentItem
             val lastaitem = viewPager.adapter?.itemCount?.minus(1)
 
-// se estiver no ultimo frame , inicia a proxima atividade ,HomeActivity
             if (currentItem == lastaitem) {
                 val intent = Intent(this, NavigationActivity::class.java)
                 startActivity(intent)
@@ -73,7 +68,6 @@ class Presentation: AppCompatActivity() {
                 viewPager.setCurrentItem(currentItem + 1, true)
             }
         }
-// infla dois circulos com cores diferentes para ser um indicador de pagina dos frames
 
         val numPages = adapter.itemCount
         for (i in 0 until numPages) {
@@ -93,13 +87,12 @@ class Presentation: AppCompatActivity() {
     }
 
     private fun updateIndicator(position: Int) {
-        // Limpa todos os indicadores
+
         for (i in 0 until indicator.childCount) {
             val indicatorView = indicator.getChildAt(i) as ImageView
             indicatorView.setImageResource(R.drawable.circle_indicator_n_selecionado)
         }
 
-        // Define o indicador atual como selecionado
         val selectedIndicatorView = indicator.getChildAt(position) as ImageView
         selectedIndicatorView.setImageResource(R.drawable.circle_indicator_selecionado)
     }
